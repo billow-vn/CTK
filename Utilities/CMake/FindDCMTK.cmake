@@ -169,6 +169,20 @@ foreach(lib
     dcmimage
     dcmimgle
     dcmdata
+    oficonv
+    i2d
+    dcmxml
+    dcmtkcharls
+    cmr
+    dcmdsig
+    dcmwlm
+    dcmrt
+    dcmiod
+    dcmfg
+    dcmseg
+    dcmtract
+    dcmpmap
+    dcmect
     oflog
     ofstd
     ijg12
@@ -273,6 +287,20 @@ foreach(dir
     dcmsign
     dcmsr
     dcmtls
+    oficonv
+    i2d
+    dcmxml
+    dcmtkcharls
+    cmr
+    dcmdsig
+    dcmwlm
+    dcmrt
+    dcmiod
+    dcmfg
+    dcmseg
+    dcmtract
+    dcmpmap
+    dcmect
     ofstd
     oflog)
   if(EXTDCMTK_SOURCE_DIR)
