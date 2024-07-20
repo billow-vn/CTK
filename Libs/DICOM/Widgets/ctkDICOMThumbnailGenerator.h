@@ -23,19 +23,20 @@
 #define __ctkDICOMThumbnailGenerator_h
 
 // Qt includes
+#include <QColor>
 class QImage;
 
-// CTK includes
-#include "ctkDICOMWidgetsExport.h"
+// ctkDICOMWidgets includes
 #include "ctkDICOMAbstractThumbnailGenerator.h"
-
+#include "ctkDICOMWidgetsExport.h"
 class ctkDICOMThumbnailGeneratorPrivate;
+
+// DCMTK includes
 class DicomImage;
 
 /// \ingroup DICOM_Widgets
 ///
-/// \brief  thumbnail generator class
-///
+/// \brief Thumbnail generator class
 class CTK_DICOM_WIDGETS_EXPORT ctkDICOMThumbnailGenerator : public ctkDICOMAbstractThumbnailGenerator
 {
   Q_OBJECT
@@ -48,15 +49,18 @@ public:
   explicit ctkDICOMThumbnailGenerator(QObject* parent = 0);
   virtual ~ctkDICOMThumbnailGenerator();
 
-  virtual bool generateThumbnail(DicomImage* dcmImage, const QString& path);
+  virtual bool generateThumbnail(DicomImage* dcmImage, const QString& thumbnailPath,
+                                 QVector<int> color = QVector<int>{169, 169, 169});
 
   Q_INVOKABLE bool generateThumbnail(DicomImage *dcmImage, QImage& image);
-  Q_INVOKABLE bool generateThumbnail(const QString dcmImagePath, QImage& image);
-  Q_INVOKABLE bool generateThumbnail(const QString dcmImagePath, const QString& thumbnailPath);
+  Q_INVOKABLE bool generateThumbnail(const QString& dcmImagePath, QImage& image);
+  Q_INVOKABLE bool generateThumbnail(const QString& dcmImagePath, const QString& thumbnailPath);
 
   /// Generate a blank thumbnail image (currently a solid gray box of the requested thumbnail size).
   /// It can be used as a placeholder for invalid images or duringan image is loaded.
-  Q_INVOKABLE void generateBlankThumbnail(QImage& image);
+  Q_INVOKABLE void generateBlankThumbnail(QImage& image, QColor color = Qt::darkGray);
+  Q_INVOKABLE virtual void generateDocumentThumbnail(const QString &thumbnailPath,
+                                                     QVector<int> color = QVector<int>{169, 169, 169});
 
   /// Set thumbnail width
   void setWidth(int width);

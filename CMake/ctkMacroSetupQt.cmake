@@ -22,12 +22,18 @@
 macro(ctkMacroSetupQt)
 
   if(CTK_QT_VERSION VERSION_EQUAL "5")
-    cmake_minimum_required(VERSION 2.8.12)
+    cmake_minimum_required(VERSION 3.16.3)
     find_package(Qt5 COMPONENTS Core)
 
     set(CTK_QT5_COMPONENTS Core)
 
     # See https://github.com/commontk/CTK/wiki/Maintenance#updates-of-required-qt-components
+
+    if(CTK_LIB_Widgets
+      OR CTK_LIB_DICOM/Widgets
+      )
+      list(APPEND CTK_QT5_COMPONENTS Svg)
+    endif()
 
     if(CTK_LIB_Widgets
       OR CTK_LIB_Scripting/Python/Core_PYTHONQT_WRAP_QTXML
